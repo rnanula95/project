@@ -4,4 +4,9 @@ git submodule init
 git submodule update
 git add .gitmodules submodules/nuovo-repository
 git commit -m "Aggiunto submodule nuovo-repository"
+git submodule init
+git submodule update
+git add .
+git commit -m "Aggiunto submodule"
+git push origin main
 

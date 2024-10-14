@@ -99,35 +99,6 @@ df_websites = df_websites.drop(
 
 print(f"\nDuplicati: {df_websites[df_websites.duplicated()]}\n")
 
-
-# GESTIONE COLONNE E TIPO VALORI
-
-
-
-
-# print("\n'Website' unique:\n")
-# print(df_websites['Website'].unique())
-# print(df_websites['Website'].unique().shape)
-# #print(df_websites.Website.unique())
-# print("\n'Websites' value counts:\n")
-# print(df_websites.Website.value_counts())
-# #print(df_websites.Website.value_counts(normalize=True))
-
-#print(df_websites['Website'])
-# df_websites['Avg_Daily_Visitors'].fillna('0', inplace=True)
-# print(df_websites['Avg_Daily_Visitors'])
-# print("\n'Avg_Daily_Visitors' isnull:\n")
-# print(df_websites[df_websites['Avg_Daily_Visitors'].isnull()])
-# df_websites.info(show_counts=True)
-
-# #os.system('cls')
-# df_websites['Avg_Daily_Visitors'] = df_websites['Avg_Daily_Visitors'].str.replace(" ", "")
-# df_websites['Avg_Daily_Visitors']=df_websites['Avg_Daily_Visitors'].astype('int64')
-# media_visitatori = df_websites['Avg_Daily_Visitors'].mean(axis=0)
-# media_visitatori_arrotondata = media_visitatori.round().astype(int)
-# df_websites['Avg_Daily_Visitors'].replace(0, media_visitatori_arrotondata, inplace=True)
-
-
 print(df_websites['Avg_Daily_Visitors'])
 df_websites.info(show_counts=True)
 nuove_colonne = {'Website':'website',
@@ -137,111 +108,6 @@ nuove_colonne = {'Website':'website',
             'Privacy':'privacy',
             'country':'country'}
 df_websites.rename(columns=nuove_colonne, inplace=True)
-#df_websites.info(show_counts=True)
-
-'''# INSERIMENTO NUOVE COLONNE
-df_websites['tw_rates'] = df_websites.loc[:,'trustworthiness']
-df_websites['cs_rates'] = df_websites.loc[:,'child_safety']
-df_websites['pr_rates'] = df_websites.loc[:,'privacy']
-
-rating_mapping = {
-    'Excellent': 5,
-    'Good': 4,
-    'Poor': 3,
-    'Very poor': 2,
-    'Unsatisfactory': 1,
-    'Unknown': 0
-}
-
-df_websites['tw_rates'] = df_websites['tw_rates'].map(rating_mapping)
-df_websites['cs_rates'] = df_websites['cs_rates'].map(rating_mapping)
-df_websites['pr_rates'] = df_websites['pr_rates'].map(rating_mapping)
-
-df_websites['tw_rates']=df_websites['tw_rates'].astype('float16')
-df_websites['cs_rates']=df_websites['cs_rates'].astype('float16')
-df_websites['pr_rates']=df_websites['pr_rates'].astype('float16')'''
-
-'''print(df_websites['tw_rates'])
-print('---------------')
-print(df_websites['cs_rates'])
-print('---------------')
-print(df_websites['pr_rates'])
-print('---------------')
-
-
-df_websites.info(show_counts=True)
-'''
-
-'''
-# COEFFICIENTE DI PEARSON
-correlazione_CS = df_websites['tw_rates'].corr(df_websites['cs_rates'])
-correlazione_PR = df_websites['tw_rates'].corr(df_websites['pr_rates'])
-
-print(f'Il coefficiente di correlazione tra Trustworthiness e Child_Safety è {correlazione_CS}') 
-print(f'Il coefficiente di correlazione tra Trustworthiness e Privacy è {correlazione_PR}')'''
-df_websites.info(show_counts=True)
-
-
-
-
-'''
-# Calcolo della covarianza
-covariance = df_websites['tw_rates'].cov(df_websites['pr_rates'])
-
-# Calcolo della varianza di X
-variance_x = df_websites['tw_rates'].var()
-
-# Calcolo del coefficiente di regressione
-regression_coefficient = covariance / variance_x
-
-# Calcolo dell'intercetta
-intercept = df_websites['pr_rates'].mean() - regression_coefficient * df_websites['tw_rates'].mean()
-
-print(f"Coefficiente di regressione tra tw_rates e pr_rates è: {regression_coefficient}")
-print(f"Intercetta: {intercept}")
-print("-----------------------")
-
-# Calcolo della covarianza
-covariance2 = df_websites['tw_rates'].cov(df_websites['cs_rates'])
-
-# Calcolo della varianza di X
-variance_x2 = df_websites['tw_rates'].var()
-
-# Calcolo del coefficiente di regressione
-regression_coefficient2 = covariance2 / variance_x2
-
-# Calcolo dell'intercetta
-intercept2 = df_websites['cs_rates'].mean() - regression_coefficient2 * df_websites['tw_rates'].mean()
-
-print(f"Coefficiente di regressione tra tw_rates e cs_rates è: {regression_coefficient2}")
-print(f"Intercetta: {intercept2}")
-'''
-
-
-
-
-# Calcolo della correlazione
-'''correlation_matrix = df_websites.corr('tw_rates', 'cs_rates')
-print("Matrice di correlazione:")
-print(correlation_matrix)
-# Calcolo della regressione
-slope, intercept, r_value, p_value, std_err = linregress(df_websites['tw_rates'], df_websites['cs_rates'])
-print("Coefficiente angolare (m):", slope)
-print("Intercetta (c):", intercept)
-print("Valore di R^2:", r_value**2)
-'''
-
-
-'''conteggio1 = df_websites['cs_rates'].value_counts()
-print('cs_rates', conteggio1)
-print('---------------')
-conteggio2 = df_websites['tw_rates'].value_counts()
-print('tw_rates', conteggio2)
-print('---------------')
-conteggio3 = df_websites['pr_rates'].value_counts()
-print('pr_rates', conteggio3)'''
-
-
 
 #DROP  DELLE RIGHE CONTENENTI IL VALORE 'Unknown'
 df_websites = df_websites.drop(df_websites[(df_websites['trustworthiness'] =='Unknown') | (df_websites['child_safety'] =='Unknown') | (df_websites['privacy'] =='Unknown')].index)
@@ -276,20 +142,6 @@ print(f"V_Cramer b\w trustworthiness and child_safety:\n{Cramer_V_tc:.4f}\n\n")
 print(f"V_Cramer b\w trustworthiness and privacy:\n{Cramer_V_tp}\n\n") 
 
 
-
-
-
-
-
-
-
-'''
-
-CREATE TABLE child_safety (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    c_safety VARCHAR(50)
-);
-INSERT INTO child_safety (c_safety)
 SELECT DISTINCT child_safety
 FROM trustworthiness_websites
 WHERE 1;

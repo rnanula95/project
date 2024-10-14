@@ -8,8 +8,8 @@ from scipy.stats import chi2_contingency
 
 # IMPORT DATI IN PANDAS
 
-motivo = pd.read_csv("lavoro\motivo.csv")
-ita_regione = pd.read_csv("lavoro\ita_regione.csv")
+motivo = pd.read_csv("motivo.csv")
+ita_regione = pd.read_csv("ita_regione.csv")
 
 motivo.drop(columns=['RESIDENCE_TERR','BASE_PER','UNIT_MEAS','UNIT_MULT',
                      'NOTE_MEAN_TRANSPORT_MEANS','NOTE_TIME_PERIOD',

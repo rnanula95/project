@@ -8,7 +8,7 @@ from scipy.stats import chi2_contingency
 
 # IMPORT DATI IN PANDAS
 
-df_websites = pd.read_excel("ProjectWork\dataset1.xlsx")
+df_websites = pd.read_excel("\dataset1.xlsx")
 
 
 # ANALISI ESPLORATIVA PRELIMINARE
@@ -142,8 +142,3 @@ print(f"V_Cramer b\w trustworthiness and child_safety:\n{Cramer_V_tc:.4f}\n\n")
 print(f"V_Cramer b\w trustworthiness and privacy:\n{Cramer_V_tp}\n\n") 
 
 
-SELECT DISTINCT child_safety
-FROM trustworthiness_websites
-WHERE 1;
-
-'''
